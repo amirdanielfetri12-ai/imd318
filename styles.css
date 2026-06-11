@@ -1,0 +1,906 @@
+
+/* Amir Works — High-Vis / Cyber */
+:root{
+  --bg:#ffffff; --fg:#111111; --muted:#a1a1aa; --border:#e5e5e5;
+  --card:#ffffff; --secondary:#f5f5f5; --accent:#ccff00; --accent-fg:#111111;
+  --primary:#09090b; --primary-fg:#ffffff;
+}
+html.dark{
+  --bg:#09090b; --fg:#f5f5f5; --muted:#a1a1aa; --border:#1f1f22;
+  --card:#111114; --secondary:#15151a; --accent:#ccff00; --accent-fg:#09090b;
+  --primary:#ccff00; --primary-fg:#09090b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.font-display,h1,h2,h3,h4,h5,h6{font-family:'Oswald','Space Grotesk',system-ui,sans-serif;letter-spacing:-0.01em;text-transform:uppercase}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 20px}
+.brand{font-family:'Oswald';font-weight:700;font-size:20px;letter-spacing:0.02em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.brand .dot{width:10px;height:10px;background:var(--accent);display:inline-block}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-family:'Oswald';font-size:13px;letter-spacing:.15em;text-transform:uppercase;opacity:.7;transition:opacity .2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--fg)}
+.nav-links a.active{border-bottom:2px solid var(--accent);padding-bottom:2px}
+.icon-btn{height:36px;width:36px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);background:transparent;color:var(--fg);cursor:pointer;transition:.2s}
+.icon-btn:hover{background:var(--fg);color:var(--bg)}
+.hamburger{display:none}
+@media (max-width:880px){
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);flex-direction:column;align-items:flex-start;padding:20px;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .hamburger{display:inline-flex}
+}
+
+/* HERO */
+.hero{padding:120px 0 60px;position:relative;overflow:hidden}
+.hero-split{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+@media (max-width:880px){.hero-split{grid-template-columns:1fr}}
+.eyebrow{font-family:'Oswald';font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.title-xl{font-size:clamp(48px,9vw,128px);line-height:.92;font-weight:700;margin-top:14px}
+.title-xl .vot{color:var(--accent);background:var(--primary);padding:0 .08em;display:inline-block}
+.subtitle{margin-top:24px;color:var(--muted);max-width:560px;font-size:17px;line-height:1.6}
+.cta-row{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;font-family:'Oswald';letter-spacing:.15em;text-transform:uppercase;font-size:13px;border:2px solid var(--fg);background:var(--fg);color:var(--bg);cursor:pointer;transition:.2s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.btn.ghost{background:transparent;color:var(--fg)}
+.btn.ghost:hover{background:var(--fg);color:var(--bg)}
+.hero-card{position:relative;border:4px solid var(--fg);aspect-ratio:4/5;overflow:hidden;background:var(--secondary)}
+.hero-card img{height:100%;width:100%;object-fit:cover;filter:grayscale(.3) contrast(1.05)}
+.hero-card .tag{position:absolute;left:-1px;bottom:24px;background:var(--accent);color:var(--accent-fg);padding:10px 16px;font-family:'Oswald';font-size:12px;letter-spacing:.25em}
+
+/* SECTION */
+section{padding:80px 0;border-top:1px solid var(--border)}
+.section-head{margin-bottom:48px}
+.section-head h2{font-size:clamp(32px,5vw,56px);font-weight:700;margin-top:8px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--bg);padding:30px 24px}
+.stat .n{font-family:'Oswald';font-size:56px;font-weight:700;line-height:1}
+.stat .l{font-family:'Oswald';font-size:11px;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;margin-top:8px}
+
+/* MARQUEE */
+.marquee{overflow:hidden;background:var(--primary);color:var(--primary-fg);padding:18px 0;border-top:4px solid var(--accent);border-bottom:4px solid var(--accent)}
+.marquee-track{display:flex;gap:48px;white-space:nowrap;animation:marq 28s linear infinite;font-family:'Oswald';font-size:24px;letter-spacing:.1em;text-transform:uppercase}
+.marquee-track span{display:inline-flex;align-items:center;gap:48px}
+.marquee-track .star{color:var(--accent)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* CARD GRID */
+.grid{display:grid;gap:20px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.grid.cols-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:880px){.grid.cols-3,.grid.cols-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);padding:24px;transition:.2s}
+.card:hover{border-color:var(--fg);transform:translateY(-2px)}
+.card h3{font-size:22px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14px;line-height:1.6}
+
+/* PAGE HERO */
+.page-hero{padding:140px 0 60px;border-bottom:1px solid var(--border);background:var(--secondary)}
+.page-hero h1{font-size:clamp(48px,8vw,96px);font-weight:700;line-height:.95;margin-top:12px}
+.page-hero p{color:var(--muted);max-width:640px;margin-top:18px;font-size:17px;line-height:1.6}
+
+/* TIMELINE */
+.timeline{position:relative;max-width:760px;margin:0 auto;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--border)}
+.timeline li{list-style:none;position:relative;margin-bottom:48px}
+.timeline li::before{content:"";position:absolute;left:-30px;top:6px;width:16px;height:16px;background:var(--accent);border:2px solid var(--fg)}
+.timeline .y{font-family:'Oswald';font-size:11px;letter-spacing:.25em;color:var(--muted);text-transform:uppercase}
+.timeline h3{font-size:24px;margin:8px 0}
+.timeline p{color:var(--muted);line-height:1.6}
+
+/* SKILLS */
+.bar{height:8px;background:var(--secondary);position:relative;overflow:hidden;margin-top:8px}
+.bar > i{display:block;height:100%;background:var(--accent);width:0;transition:width 1s ease}
+.skill-row{margin-bottom:18px}
+.skill-row .top{display:flex;justify-content:space-between;font-family:'Oswald';font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+
+/* GALLERY */
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:880px){.gal-grid{grid-template-columns:repeat(2,1fr)}}
+.gal-grid img{aspect-ratio:1;object-fit:cover;cursor:zoom-in;transition:.4s}
+.gal-grid img:hover{transform:scale(1.03)}
+
+/* CAROUSEL */
+.carousel{position:relative;border:4px solid var(--fg);overflow:hidden}
+.car-track{display:flex;transition:transform .5s ease}
+.car-track > div{min-width:100%;position:relative}
+.car-track img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.car-cap{position:absolute;left:16px;bottom:16px;background:var(--primary);color:var(--primary-fg);padding:12px 16px}
+.car-cap b{font-family:'Oswald';font-size:18px;letter-spacing:.05em;text-transform:uppercase}
+.car-cap small{display:block;font-family:'Oswald';font-size:10px;letter-spacing:.2em;opacity:.7;margin-top:4px}
+.car-nav{display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+.dots i{width:32px;height:5px;background:var(--border);cursor:pointer}
+.dots i.on{background:var(--accent)}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.lightbox.open{display:flex}
+.lightbox img{max-height:90vh;max-width:90vw}
+.lightbox .close{position:absolute;top:20px;right:20px;color:#fff;font-size:28px;cursor:pointer;background:none;border:none}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:880px){.contact-grid{grid-template-columns:1fr}}
+.form input,.form textarea{width:100%;padding:14px;border:1px solid var(--border);background:var(--bg);color:var(--fg);font-family:inherit;font-size:15px;margin-bottom:14px}
+.form input:focus,.form textarea:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.map{aspect-ratio:4/3;border:1px solid var(--border);filter:grayscale(1) contrast(1.1)}
+
+/* FOOTER */
+footer{background:var(--primary);color:var(--primary-fg);padding:60px 0 24px;margin-top:0;border-top:4px solid var(--accent)}
+footer h4{font-family:'Oswald';font-size:14px;letter-spacing:.2em;margin-bottom:14px;color:var(--accent)}
+footer a{opacity:.7;font-size:14px;line-height:2}
+footer a:hover{opacity:1}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+@media (max-width:700px){.foot-grid{grid-template-columns:1fr 1fr}}
+.copy{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:20px;font-size:12px;opacity:.5;text-align:center}
+
+/* BACK TO TOP */
+.totop{position:fixed;right:20px;bottom:20px;width:46px;height:46px;background:var(--accent);color:var(--accent-fg);border:none;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:20px;z-index:40}
+.totop.show{display:inline-flex}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+.hero-card video{height:100%;width:100%;object-fit:cover;filter:grayscale(.2) contrast(1.05)}
+.video-frame{position:relative;border:4px solid var(--fg);overflow:hidden;background:#000}
+.video-frame video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+
+/* Adds a diagonal grey-to-black gradient in dark mode */
+html.dark body {
+  background: linear-gradient(135deg, #2a2a30 0%, #000000 100%);
+  background-attachment: fixed;
+}
+
+/* Forces the highlighted green text to turn black in dark mode */
+html.dark .title-xl .vot {
+  color: var(--accent-fg);
+}
+
+/* 1. Turns the marquee stars, footer headings, and "Amir.Works" black in dark mode */
+html.dark .marquee-track .star,
+html.dark footer h4,
+html.dark footer .brand {
+  color: var(--primary-fg) !important;
+}
+
+/* 2. Fixes the square dot next to "Amir.Works" in the footer */
+html.dark footer .brand .dot {
+  background: var(--primary-fg) !important;
+}
+
+/* 3. Darkens the border line above your copyright section so it's visible against the green */
+html.dark .copy {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Shows a magnifying glass cursor on all content images to indicate the lightbox */
+section img {
+  cursor: zoom-in;
+  transition: transform 0.4s ease;
+}
+
+/* Optional: Adds a slight zoom effect when hovering over any image */
+section img:hover {
+  transform: scale(1.02);
+}
+
+/* --- PAGE TRANSITION LOADER --- */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 99999; /* Keeps it on top of everything */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Hides the loader */
+.page-loader.hidden {
+  opacity: 0;
+}
+
+/* The new text loader styling */
+.loader-text {
+  font-family: 'Oswald', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--fg); /* Adapts to black or white depending on the theme */
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* The green accent dot */
+/* Turns the static green square into a mini circular spinner */
+.loader-text .dot {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 3px solid var(--border); /* Creates the background ring */
+  border-top-color: var(--accent); /* Adds the green spinning highlight */
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.8s linear infinite; /* Keeps it spinning constantly */
+}
+
+/* Tells the dot how to spin */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Universal Image Hover "Pop Out" Effect */
+section img {
+  /* Controls the speed of the zoom and shadow */
+  transition: transform 0.4s ease, box-shadow 0.4s ease; 
+  cursor: zoom-in;
+}
+
+section img:hover {
+  /* Zooms the image in by 5%. Change to 1.10 for a bigger zoom */
+  transform: scale(1.05); 
+  
+  /* Adds a shadow underneath to make it look like it's popping off the screen */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+  
+  /* Ensures the zoomed image overlaps other elements instead of hiding behind them */
+  z-index: 10; 
+  position: relative; 
+}
+
+/* Light mode background gradient */
+html:not(.dark) body {
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8ea 100%);
+  background-attachment: fixed;
+}
+
+/* Ambient Neon Glow for the Hero Section */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60vw;          /* Scales with the screen size */
+  height: 60vw;
+  background: var(--accent); /* Uses your exact neon green variable */
+  border-radius: 50%;
+  filter: blur(120px);  /* This creates the soft "light ray" effect */
+  opacity: 0.25;        /* Keeps it subtle so the text remains readable */
+  z-index: 0;           /* Pushes it behind the content */
+  pointer-events: none; /* Prevents it from blocking clicks */
+}
+
+/* Optional: Add a smaller secondary light on the left side for balance */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 40vw;
+  height: 40vw;
+  background: var(--muted); 
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ambient Side Lighting for Inner Pages (About, Story, etc.) */
+.page-hero {
+  position: relative;
+  overflow: hidden; /* Keeps the light from spilling outside the hero block */
+}
+
+/* Elevates the text so the glowing light sits behind it */
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Left Side: Flat neon gradient with soft black edges */
+.page-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5%;
+  width: 25vw;
+  height: 100%;
+  /* Blends from dark black on the edge, to neon, to transparent */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), var(--accent) 40%, transparent);
+  filter: blur(70px);
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Right Side: Flat neon gradient with soft black edges */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5%;
+  width: 25vw;
+  height: 100%;
+  /* Reverses the direction for the right side */
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.5), var(--accent) 40%, transparent);
+  filter: blur(70px);
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Aesthetic Neon & Black Brush Stroke Background */
+.section-brush {
+  position: relative;
+  overflow: hidden; /* Prevents the brush stroke from causing horizontal scrolling */
+  z-index: 1;
+}
+
+.section-brush::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vw;
+  height: 120%;
+  /* Angles the stroke dynamically across the screen */
+  transform: translate(-50%, -50%) skewY(-6deg);
+  /* Creates the "paint" mix of dark ink and neon glow */
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(0, 0, 0, 0.7) 20%, 
+    color-mix(in srgb, var(--accent) 70%, transparent) 50%, 
+    rgba(0, 0, 0, 0.7) 80%, 
+    transparent 100%
+  );
+  filter: blur(25px); /* Softens it so it looks like dry brushing/lighting */
+  opacity: 0.15; /* Keeps the text highly readable */
+  z-index: -1; /* Puts it behind your content */
+  pointer-events: none;
+}
+
+/* Makes the neon slightly more vivid when Dark Mode is active */
+html.dark .section-brush::before {
+  opacity: 0.25; 
+}
+
+/* --- FIXED: Image Hover Pop-Out --- */
+section img {
+  cursor: zoom-in;
+  /* We removed the global transition here so it stops breaking your .reveal fade-in! */
+}
+
+/* 1. The Snappy Hover Effect */
+section img.reveal.in:hover, 
+section img:not(.reveal):hover {
+  /* The !important tag ensures it overrides the default reveal state */
+  transform: scale(1.05) !important; 
+  z-index: 10; 
+  position: relative; 
+  box-shadow: none; 
+  
+  /* Apply the springy zoom ONLY when hovering */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  
+  /* Forces the hover to happen instantly, ignoring any entrance delays */
+  transition-delay: 0s !important; 
+}
+
+/* 2. The 1-2-3 Waterfall Reveal Delay */
+/* This automatically targets the 1st, 2nd, and 3rd items in your grids */
+.grid.cols-3 > .reveal:nth-child(1) { transition-delay: 0s; }
+.grid.cols-3 > .reveal:nth-child(2) { transition-delay: 0.15s; }
+.grid.cols-3 > .reveal:nth-child(3) { transition-delay: 0.3s; }
+
+/* --- Story Page: Cyber "Half Rectangle" Corners --- */
+.timeline-frame {
+  position: relative;
+  padding: 60px 40px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+/* Top-Left & Bottom-Right: Large Dark Half-Rectangles */
+.timeline-frame::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    linear-gradient(135deg, var(--fg) 50px, transparent 51px) top left,
+    linear-gradient(315deg, var(--fg) 50px, transparent 51px) bottom right;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  z-index: 0;
+  /* Softens the black slightly so it blends nicely */
+  opacity: 0.8; 
+}
+
+/* Top-Right & Bottom-Left: Small Neon Accent Slices */
+.timeline-frame::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    linear-gradient(225deg, var(--accent) 25px, transparent 26px) top right,
+    linear-gradient(45deg, var(--accent) 25px, transparent 26px) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Elevates the actual timeline so the corner shapes stay underneath */
+.timeline-frame .timeline {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Vertical Side Brushes (Story Page) --- */
+.story-brushes {
+  position: relative;
+  overflow: hidden; /* Keeps the brush from causing horizontal scrolling */
+}
+
+.story-brushes::before,
+.story-brushes::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 25vw;
+  height: 120%;
+  filter: blur(35px); /* Softens the strokes */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.2; /* Subtle in light mode */
+}
+
+/* Left Edge Brush */
+.story-brushes::before {
+  left: -10%;
+  transform: skewX(-12deg); /* Angles the brush slice */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, var(--accent) 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+/* Right Edge Brush */
+.story-brushes::after {
+  right: -10%;
+  transform: skewX(12deg); /* Opposite angle for symmetry */
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, var(--accent) 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+/* Makes the neon slightly brighter in Dark Mode */
+html.dark .story-brushes::before,
+html.dark .story-brushes::after {
+  opacity: 0.35;
+}
+
+/* Ensure the timeline frame stays cleanly above the brushes */
+.story-brushes .timeline-frame {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Global Table Style: Force remove ALL table lines --- */
+table, table tr, table th, table td, table tbody tr, table thead tr {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* --- Education Page: Green & Orange Side Brushes --- */
+.edu-brush {
+  position: relative;
+  overflow: hidden; 
+}
+
+/* Base setup for both left and right brushes */
+.edu-brush::before,
+.edu-brush::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 25vw;
+  height: 120%;
+  filter: blur(35px); /* Soft brush effect */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.2; /* Subtle for light mode */
+}
+
+/* Left Edge Brush: Green melting into Orange */
+.edu-brush::before {
+  left: -10%;
+  transform: skewX(-12deg);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, var(--accent) 80%, transparent) 40%,
+    color-mix(in srgb, #ff7a00 80%, transparent) 70%,
+    transparent 100%
+  );
+}
+
+/* Right Edge Brush: Green melting into Orange */
+.edu-brush::after {
+  right: -10%;
+  transform: skewX(12deg);
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, var(--accent) 80%, transparent) 40%,
+    color-mix(in srgb, #ff7a00 80%, transparent) 70%,
+    transparent 100%
+  );
+}
+
+/* Pops brighter in Dark Mode */
+html.dark .edu-brush::before,
+html.dark .edu-brush::after {
+  opacity: 0.35; 
+}
+
+/* Ensures your cards and images stay cleanly above the paint */
+.edu-brush .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- 4-Column Waterfall Reveal (Skills Page) --- */
+.grid.cols-4 > .reveal:nth-child(1) { transition-delay: 0s; }
+.grid.cols-4 > .reveal:nth-child(2) { transition-delay: 0.15s; }
+.grid.cols-4 > .reveal:nth-child(3) { transition-delay: 0.3s; }
+.grid.cols-4 > .reveal:nth-child(4) { transition-delay: 0.45s; }
+
+/* The Video Reveal Delay (Popping out after the 4th image) */
+/* The '+' symbol tells the browser to target the video frame that comes immediately after a 4-column grid */
+.grid.cols-4 + .video-frame.reveal { 
+  transition-delay: 0.6s; 
+}
+
+/* --- Skills Page: Neon Purple & Black Side Brushes --- */
+.skills-brush {
+  position: relative;
+  overflow: hidden; 
+}
+
+/* Base setup for the purple side brushes */
+.skills-brush::before,
+.skills-brush::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 25vw;
+  height: 120%;
+  filter: blur(35px); /* Soft brush effect */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.2; /* Subtle for light mode */
+}
+
+/* Left Edge: Deep black melting into Neon Purple */
+.skills-brush::before {
+  left: -10%;
+  transform: skewX(-12deg);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, #b026ff 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+/* Right Edge: Deep black melting into Neon Purple */
+.skills-brush::after {
+  right: -10%;
+  transform: skewX(12deg);
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, #b026ff 80%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+/* Makes the neon pop beautifully in Dark Mode */
+html.dark .skills-brush::before,
+html.dark .skills-brush::after {
+  opacity: 0.35; 
+}
+
+/* Ensures your skill bars and images stay sharply above the paint */
+.skills-brush .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Achievements Page: Gold & Yellow Side Brushes --- */
+.achievements-brush {
+  position: relative;
+  overflow: hidden; 
+}
+
+/* Base setup for the gold side brushes */
+.achievements-brush::before,
+.achievements-brush::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 25vw;
+  height: 120%;
+  filter: blur(35px); /* Soft brush effect */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.2; /* Subtle for light mode */
+}
+
+/* Left Edge: Deep black melting into Gold and Yellow */
+.achievements-brush::before {
+  left: -10%;
+  transform: skewX(-12deg);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, #ffd700 80%, transparent) 40%, /* Bright Gold */
+    color-mix(in srgb, #ffaa00 80%, transparent) 70%, /* Deep Yellow/Orange */
+    transparent 100%
+  );
+}
+
+/* Right Edge: Deep black melting into Gold and Yellow */
+.achievements-brush::after {
+  right: -10%;
+  transform: skewX(12deg);
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, #ffd700 80%, transparent) 40%, 
+    color-mix(in srgb, #ffaa00 80%, transparent) 70%, 
+    transparent 100%
+  );
+}
+
+/* Makes the gold shine brightly in Dark Mode */
+html.dark .achievements-brush::before,
+html.dark .achievements-brush::after {
+  opacity: 0.35; 
+}
+
+/* Ensures your achievement cards and images stay cleanly above the paint */
+.achievements-brush .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Cyber Grip Stripes for Cards --- */
+.card {
+  position: relative;
+  overflow: hidden; /* Ensures the stripes stay cleanly inside the box boundaries */
+}
+
+/* Draws the diagonal stripes in the bottom-right corner */
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 75px;
+  height: 75px;
+  /* Creates the repeating black lines */
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    #000000 5px,
+    #000000 7px
+  );
+  opacity: 0.15; /* Softly visible in light mode */
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Elevates the text inside the card so the stripes always sit behind the words */
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Dark Mode Configuration --- */
+/* You requested black stripes. Since dark mode cards are already very dark, 
+   we boost the opacity heavily so the pure black slices through the dark grey! */
+html.dark .card::after {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    #000000 5px,
+    #000000 7px
+  );
+  opacity: 0.8; 
+}
+
+/* Optional: Make the stripes shift and darken slightly when you hover over the card */
+.card:hover::after {
+  opacity: 0.3;
+  transform: scale(1.1);
+}
+html.dark .card:hover::after {
+  opacity: 1;
+}
+
+/* --- Removes the Cyber Grip Stripes on specific sections --- */
+.no-stripes .card::after {
+  display: none !important;
+}
+
+/* --- Hobbies Page: 4-Way Cream & Black Brushes --- */
+.hobbies-brush {
+  position: relative;
+  overflow: hidden; 
+}
+
+/* 1. The Left and Right Side Brushes */
+.hobbies-brush::before {
+  content: "";
+  position: absolute;
+  top: -10%; left: -10%; right: -10%; bottom: -10%;
+  transform: skewX(-12deg); /* Angles the side strokes */
+  background: 
+    /* Left Edge: Black melting into Vanilla Cream */
+    linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, color-mix(in srgb, #fdf6e3 80%, transparent) 20%, transparent 40%),
+    /* Right Edge: Black melting into Vanilla Cream */
+    linear-gradient(-90deg, rgba(0, 0, 0, 0.9) 0%, color-mix(in srgb, #fdf6e3 80%, transparent) 20%, transparent 40%);
+  filter: blur(40px); /* Soft brush effect */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25; /* Soft glow for light mode */
+}
+
+/* 2. The Top and Bottom Brushes */
+.hobbies-brush::after {
+  content: "";
+  position: absolute;
+  top: -10%; left: -10%; right: -10%; bottom: -10%;
+  transform: skewY(-4deg); /* Slightly angles the top/bottom strokes */
+  background: 
+    /* Top Edge: Black melting into Beige Cream */
+    linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, color-mix(in srgb, #f5f5dc 80%, transparent) 20%, transparent 40%),
+    /* Bottom Edge: Black melting into Beige Cream */
+    linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, color-mix(in srgb, #f5f5dc 80%, transparent) 20%, transparent 40%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* Boosts the contrast and glow in Dark Mode */
+html.dark .hobbies-brush::before,
+html.dark .hobbies-brush::after {
+  opacity: 0.4; 
+}
+
+/* Ensures your cards and images stay fully visible above the paint */
+.hobbies-brush .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Floating Music Player --- */
+.music-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+  padding: 10px 16px;
+  border-radius: 30px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 9999; /* Keeps it above absolutely everything */
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.1); /* Subtle neon glow */
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.music-btn.playing {
+  border-color: #b026ff; /* Changes to purple when playing */
+  box-shadow: 0 0 15px rgba(176, 38, 255, 0.3);
+}
+
+/* --- Gallery Page: Red & Blue Side Brushes --- */
+.gallery-brush {
+  position: relative;
+  overflow: hidden; 
+}
+
+/* Base setup for both far left and right brushes */
+.gallery-brush::before,
+.gallery-brush::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  width: 25vw;
+  height: 120%;
+  filter: blur(35px); /* Soft brush effect */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25; /* Subtle for light mode */
+}
+
+/* Far Left Edge: Deep black melting into Neon Red then Neon Blue */
+.gallery-brush::before {
+  left: -12%; /* Pushed to the far left */
+  transform: skewX(-12deg);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, #ff003c 80%, transparent) 40%, /* Neon Red */
+    color-mix(in srgb, #0044ff 80%, transparent) 70%, /* Neon Blue */
+    transparent 100%
+  );
+}
+
+/* Far Right Edge: Deep black melting into Neon Blue then Neon Red */
+.gallery-brush::after {
+  right: -12%; /* Pushed to the far right */
+  transform: skewX(12deg);
+  background: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    color-mix(in srgb, #0044ff 80%, transparent) 40%, /* Neon Blue */
+    color-mix(in srgb, #ff003c 80%, transparent) 70%, /* Neon Red */
+    transparent 100%
+  );
+}
+
+/* Pops brighter and more vivid in Dark Mode */
+html.dark .gallery-brush::before,
+html.dark .gallery-brush::after {
+  opacity: 0.4; 
+}
+
+/* Ensures your gallery images stay completely above the paint */
+.gallery-brush .container {
+  position: relative;
+  z-index: 2;
+}
